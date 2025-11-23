@@ -1,0 +1,46 @@
+
+<h2>Employee Performance Analysis</h2>
+<p><b>Email:</b> 24f2000871@ds.study.iitm.ac.in</p>
+
+<h3>Marketing Department Count</h3>
+<p><b>Frequency count for Marketing Department:</b> 15</p>
+
+<h3>Histogram</h3>
+<img src='department_histogram.png' width='500'>
+
+<h3>Python Code Used</h3>
+<pre><code>
+import pandas as pd
+import matplotlib.pyplot as plt
+import random
+
+departments = (
+    ["Marketing"] * 15 +
+    ["Sales"] * 20 +
+    ["HR"] * 20 +
+    ["Finance"] * 20 +
+    ["IT"] * 25
+)
+
+regions = ["North", "South", "East", "West"]
+
+df = pd.DataFrame({
+    "EmployeeID": range(1, 101),
+    "Department": departments,
+    "Region": [random.choice(regions) for _ in range(100)],
+    "PerformanceScore": [random.randint(70, 100) for _ in range(100)]
+})
+
+marketing_count = (df["Department"] == "Marketing").sum()
+print("Frequency count for Marketing department:", marketing_count)
+
+plt.figure(figsize=(8, 5))
+plt.hist(df["Department"], color="skyblue", edgecolor="black")
+plt.title("Department Distribution Histogram")
+plt.xlabel("Department")
+plt.ylabel("Frequency")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig("department_histogram.png")
+plt.show()
+</code></pre>
